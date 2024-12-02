@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_c12_online_sun/data/api/model/sources_response/source.dart';
+import 'package:news_app_c12_online_sun/core/di.dart';
+import 'package:news_app_c12_online_sun/domain/entities/source_entity.dart';
 import 'package:news_app_c12_online_sun/presentation/common/base_state.dart';
 import 'package:news_app_c12_online_sun/presentation/common/error_state_widget.dart';
 import 'package:news_app_c12_online_sun/presentation/common/loading_state_widget.dart';
@@ -10,14 +11,14 @@ import 'package:provider/provider.dart';
 class ArticlesView extends StatefulWidget {
   ArticlesView({super.key, required this.source});
 
-  Source source;
+  SourceEntity source;
 
   @override
   State<ArticlesView> createState() => _ArticlesViewState();
 }
 
 class _ArticlesViewState extends State<ArticlesView> {
-  var viewModel = ArticlesViewViewModel();
+  var viewModel = ArticlesViewViewModel(articlesUseCase: getArticlesUseCase());
 
   @override
   void initState() {
@@ -71,4 +72,18 @@ class _ArticlesViewState extends State<ArticlesView> {
       ),
     );
   }
+}
+// const Vs final
+
+// const -> full immutable
+// final -> half immutable
+
+void test() {
+  const int x = 10; // full immutable
+  final int y; // half immutable
+
+  // textField -> username
+  String userName = '';
+  // textField -> phonenum
+  final phoneNumber;
 }

@@ -1,19 +1,23 @@
-import 'package:news_app_c12_online_sun/data/api/api_manager/api_manager.dart';
-import 'package:news_app_c12_online_sun/data/api/model/sources_response/source.dart';
+import 'package:news_app_c12_online_sun/domain/entities/source_entity.dart';
+import 'package:news_app_c12_online_sun/domain/usecases/get_sources_usecase.dart';
 import 'package:news_app_c12_online_sun/presentation/common/base_state.dart';
 import 'package:news_app_c12_online_sun/presentation/common/base_viewModel.dart';
 import 'package:news_app_c12_online_sun/result.dart';
 
-class SourcesViewModel extends BaseViewModel<List<Source>> {
+class SourcesViewModel extends BaseViewModel<List<SourceEntity>> {
+  GetSourcesUseCase sourcesUseCase;
+
+  SourcesViewModel({required this.sourcesUseCase});
+
   void getSourcesByCategoryId(String categoryId) async {
     emit(LoadingState(loadingMessage: 'Plz, wait...'));
-    var result = await ApiManager.getSources(categoryId);
+    var result = await sourcesUseCase.execute(categoryId);
     switch (result) {
-      case Success<List<Source>>():
+      case Success<List<SourceEntity>>():
         emit(SuccessState(data: result.data));
-      case ServerError<List<Source>>():
+      case ServerError<List<SourceEntity>>():
         emit(ErrorState(serverError: result));
-      case Error<List<Source>>():
+      case Error<List<SourceEntity>>():
         emit(ErrorState(error: result));
     }
   }

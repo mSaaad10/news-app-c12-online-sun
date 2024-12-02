@@ -1,3 +1,5 @@
+import 'package:news_app_c12_online_sun/domain/entities/source_entity.dart';
+
 class Source {
   String? id;
   String? name;
@@ -37,5 +39,10 @@ class Source {
     map['language'] = language;
     map['country'] = country;
     return map;
+  }
+
+  // Helper Function
+  SourceEntity toSourceEntity() {
+    return SourceEntity(id: id, name: name);
   }
 }

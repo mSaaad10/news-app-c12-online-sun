@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_c12_online_sun/core/di.dart';
 import 'package:news_app_c12_online_sun/data_model/category_DM.dart';
 import 'package:news_app_c12_online_sun/presentation/common/base_state.dart';
 import 'package:news_app_c12_online_sun/presentation/common/error_state_widget.dart';
@@ -8,17 +9,18 @@ import 'package:news_app_c12_online_sun/presentation/screens/home/tabs/sources/w
 import 'package:provider/provider.dart';
 
 class SourcesView extends StatefulWidget {
-  SourcesView({super.key, required this.categoryDM});
+  const SourcesView({super.key, required this.categoryDM});
 
-  CategoryDM categoryDM;
+  final CategoryDM categoryDM;
 
   @override
   State<SourcesView> createState() => _SourcesViewState();
 }
 
 class _SourcesViewState extends State<SourcesView> {
+  // ToDo injectable
   // tapped item in gridView
-  var viewModel = SourcesViewModel();
+  var viewModel = SourcesViewModel(sourcesUseCase: getSourcesUserCase());
 
   @override
   void initState() {

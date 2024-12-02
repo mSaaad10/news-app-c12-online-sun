@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app_c12_online_sun/presentation/screens/home/home.dart';
 import 'package:news_app_c12_online_sun/presentation/screens/splash/splash.dart';
@@ -15,7 +14,7 @@ class RoutesManager {
         );
       case home:
         return MaterialPageRoute(
-          builder: (context) => Home(),
+          builder: (context) => const Home(),
         );
     }
   }

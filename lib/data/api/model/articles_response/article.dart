@@ -1,4 +1,5 @@
 import 'package:news_app_c12_online_sun/data/api/model/sources_response/source.dart';
+import 'package:news_app_c12_online_sun/domain/entities/article_entity.dart';
 
 class Article {
   Article({
@@ -23,9 +24,9 @@ class Article {
     content = json['content'];
   }
 
-  Source? source;
   dynamic author;
   String? title;
+  Source? source;
   String? description;
   String? url;
   String? urlToImage;
@@ -45,5 +46,17 @@ class Article {
     map['publishedAt'] = publishedAt;
     map['content'] = content;
     return map;
+  }
+
+  ArticleEntity toArticleEntity() {
+    return ArticleEntity(
+      url: url,
+      title: title,
+      urlToImage: urlToImage,
+      publishedAt: publishedAt,
+      content: content,
+      description: description,
+      source: source?.toSourceEntity(),
+    );
   }
 }

@@ -13,7 +13,7 @@ class ApiManager {
   static const String apiKey = 'be69a84c535c43928fdad67c7cd21548';
 
 // sports
-  static Future<Result<List<Source>>> getSources(String categoryId) async {
+   Future<Result<List<Source>>> getSources(String categoryId) async {
     Uri uri = Uri.https(baseUrl, '/v2/top-headlines/sources', {
       'apiKey': apiKey,
       'category': categoryId,
@@ -35,7 +35,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Article>>> getArticles(String sourceId) async {
+  Future<Result<List<Article>>> getArticles(String sourceId) async {
     Uri url = Uri.https(baseUrl, '/v2/everything', {
       'apiKey': apiKey,
       'sources': sourceId,

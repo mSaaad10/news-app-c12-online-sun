@@ -8,7 +8,9 @@ import 'package:news_app_c12_online_sun/presentation/screens/home/tabs/category_
 import 'package:news_app_c12_online_sun/presentation/screens/home/tabs/settings/settings.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  const Home({
+    super.key,
+  });
 
   @override
   State<Home> createState() => _HomeState();
@@ -29,6 +31,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    BoxDecoration d = BoxDecoration();
     return Container(
       decoration: const BoxDecoration(
           color: ColorsManager.white,
